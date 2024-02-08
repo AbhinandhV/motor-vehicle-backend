@@ -1,0 +1,16 @@
+const express=require("express")
+const carmodels=require("../models/carmodel")
+const router=express.Router()
+
+router.post("/add",(req,res)=>
+{
+    let data=req.body
+    let model=new carmodels(data)
+    let result=model.save()
+    res.json(
+        {
+            status:"success"
+        }
+    )
+})
+module.exports=router
