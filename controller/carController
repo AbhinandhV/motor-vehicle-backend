@@ -2,15 +2,22 @@ const express=require("express")
 const carmodels=require("../models/carmodel")
 const router=express.Router()
 
-router.post("/add",(req,res)=>
+router.post("/add",async(req,res)=>
 {
     let data=req.body
     let model=new carmodels(data)
-    let result=model.save()
+    let result=await model.save()
     res.json(
         {
             status:"success"
         }
     )
+})
+
+router.get("/view",async(req,res)=>
+{
+    let result=await carmodels.find()
+    res.json(result)
+    
 })
 module.exports=router
